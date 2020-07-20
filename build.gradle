@@ -12,6 +12,7 @@ buildscript {
         JunitExt = '1.1.1'
         Arch_version = '2.1.0'
         Retrofit = '2.9.0'
+        Room = '2.2.5'
     }
 
     repositories {
