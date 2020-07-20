@@ -4,6 +4,7 @@ buildscript {
         kotlin_version = "1.3.72"
         RxJava = '3.0.4'
         RxKotlin = '3.0.0'
+        RxBridge = '3.0.0'
         JavaxInject = "1"
         Mockito = '2.22.0'
         Junit = '4.13'

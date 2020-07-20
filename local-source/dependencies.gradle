@@ -3,7 +3,7 @@ ext {
     Rx = [
             rxKotlin: "io.reactivex.rxjava3:rxkotlin:${RxKotlin}",
             rxJava  : "io.reactivex.rxjava3:rxjava:${RxJava}",
-            bridge  : "com.github.akarnokd:rxjava3-bridge:3.0.0"
+            bridge  : "com.github.akarnokd:rxjava3-bridge:${RxBridge}"
     ]
 
     kotlin = [
