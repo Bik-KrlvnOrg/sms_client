@@ -18,6 +18,7 @@ class AuthenticationTaskTest {
     companion object {
         private const val USER_NAME = "any_username"
         private const val USER_PASSWORD = "any_username"
+        private const val USER_TYPE = "Staff"
     }
 
     private lateinit var authenticationTask: AuthenticationTask
@@ -35,26 +36,27 @@ class AuthenticationTaskTest {
     @Test(expected = IllegalArgumentException::class)
     fun `should throw an error if username is not provided`() {
         val username = ""
-        authenticationTask.execute(AuthenticationTask.Params(username, USER_PASSWORD))
+        authenticationTask.execute(AuthenticationTask.Params(username, USER_PASSWORD, USER_TYPE))
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun `should throw an error if password is not provided`() {
         val password = ""
-        authenticationTask.execute(AuthenticationTask.Params(USER_NAME, password))
+        authenticationTask.execute(AuthenticationTask.Params(USER_NAME, password, USER_TYPE))
     }
 
     @Test
     fun `should return user data if valid credentials`() {
         val user = FakeUser.getUser()
 
-        Mockito.`when`(userRepository.getUser(anyString(), anyString()))
+        Mockito.`when`(userRepository.getUser(anyString(), anyString(), anyString()))
             .thenReturn(Observable.just(user))
 
         val testObserver = authenticationTask.execute(
             AuthenticationTask.Params(
                 USER_NAME,
-                USER_PASSWORD
+                USER_PASSWORD,
+                USER_TYPE
             )
         ).test()
 

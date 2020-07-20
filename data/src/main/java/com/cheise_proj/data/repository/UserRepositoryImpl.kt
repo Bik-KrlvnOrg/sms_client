@@ -14,11 +14,12 @@ class UserRepositoryImpl @Inject constructor(
     private val local: LocalUser
 ) : UserRepository {
 
-    override fun getUser(username: String, password: String): Observable<UserEntity> {
+    override fun getUser(username: String, password: String, type: String): Observable<UserEntity> {
         val localUser = local.getUser(username = username, password = password).toObservable()
             .map { t: User -> t.asObject() }
-        return remote.fetchUser(username = username, password = password)
+        return remote.fetchUserToken(username = username, password = password, type = type)
             .map { t: User ->
+                t.password = password
                 local.addUser(t)
                 t.asObject()
             }.onErrorResumeNext { Observable.empty() }

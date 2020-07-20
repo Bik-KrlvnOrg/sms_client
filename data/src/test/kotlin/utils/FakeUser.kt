@@ -9,8 +9,9 @@ internal object FakeUser{
             id = 1,
             username = "any_username",
             avatarUrl = "http://any_url",
-            type = UserType.STAFF,
-            schoolId = 1
+            type = UserType.STAFF.name,
+            schoolId = 1,
+            password = ""
         )
     }
 }

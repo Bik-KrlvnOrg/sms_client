@@ -7,7 +7,6 @@ import com.cheise_proj.domain.rx.ObservableUseCase
 import com.cheise_proj.domain.rx.qualifier.Foreground
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class AuthenticationTask @Inject constructor(
@@ -25,13 +24,14 @@ class AuthenticationTask @Inject constructor(
         if (input.password.isEmpty()) throw IllegalArgumentException("provide a password")
 
         return with(input) {
-            userRepository.getUser(username, password)
+            userRepository.getUser(username, password,type)
         }
 
     }
 
     data class Params(
         val username: String,
-        val password: String
+        val password: String,
+        val type:String
     )
 }
