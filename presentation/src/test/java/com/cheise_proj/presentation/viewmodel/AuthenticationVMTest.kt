@@ -1,6 +1,8 @@
 package com.cheise_proj.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+
+import com.cheise_proj.domain.entities.UserType
 import com.cheise_proj.domain.repository.UserRepository
 import com.cheise_proj.domain.usecases.user.AuthenticationTask
 import com.cheise_proj.presentation.extensions.toEntity
@@ -48,10 +50,20 @@ class AuthenticationVMTest {
     @Test
     fun `should get user data with credentials`() {
         val user = FakeUser.getUser()
-        Mockito.`when`(userRepository.getUser(username = anyString(), password = anyString()))
+        Mockito.`when`(
+            userRepository.getUser(
+                username = anyString(),
+                password = anyString(),
+                type = anyString()
+            )
+        )
             .thenReturn(Observable.just(user.toEntity()))
 
-        authenticationVM.authenticateWithCredentials(username = USER_NAME, password = USER_PASSWORD)
+        authenticationVM.authenticateWithCredentials(
+            username = USER_NAME,
+            password = USER_PASSWORD,
+            type = UserType.STAFF
+        )
         val expected = authenticationVM.userResource
         expected.observeForever { }
 
@@ -60,10 +72,20 @@ class AuthenticationVMTest {
 
     @Test
     fun `should get an error message with invalid credentials`() {
-        Mockito.`when`(userRepository.getUser(username = anyString(), password = anyString()))
+        Mockito.`when`(
+            userRepository.getUser(
+                username = anyString(),
+                password = anyString(),
+                type = anyString()
+            )
+        )
             .thenReturn(Observable.error(Throwable(ERROR_MESSAGE)))
 
-        authenticationVM.authenticateWithCredentials(username = USER_NAME, password = USER_PASSWORD)
+        authenticationVM.authenticateWithCredentials(
+            username = USER_NAME,
+            password = USER_PASSWORD,
+            type = UserType.STAFF
+        )
         val expected = authenticationVM.userResource
         expected.observeForever { }
         assertTrue(expected.value?.status == Status.ERROR && expected.value?.message == ERROR_MESSAGE)

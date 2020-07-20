@@ -3,6 +3,10 @@ package com.cheise_proj.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.toLiveData
+
+
+import com.cheise_proj.domain.entities.UserType
+
 import com.cheise_proj.domain.usecases.user.AuthenticationTask
 import com.cheise_proj.presentation.extensions.toModel
 import com.cheise_proj.presentation.model.Resource
@@ -16,9 +20,9 @@ class AuthenticationVM @Inject constructor(private val authenticationTask: Authe
 
     var userResource: LiveData<Resource<User>> = MutableLiveData()
 
-    fun authenticateWithCredentials(username: String, password: String) {
+    fun authenticateWithCredentials(username: String, password: String, type: UserType) {
         userResource =
-            authenticationTask.execute(AuthenticationTask.Params(username, password))
+            authenticationTask.execute(AuthenticationTask.Params(username, password, type.name))
                 .map { it.toModel() }
                 .map { Resource.success(it) }
                 .startWith(Observable.just(Resource.loading()))

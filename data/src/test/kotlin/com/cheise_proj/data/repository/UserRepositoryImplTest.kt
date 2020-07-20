@@ -42,12 +42,14 @@ class UserRepositoryImplTest {
     @Test
     fun `should fetch user data from remote and save to local`() {
         val user = FakeUser.getUser()
-        Mockito.`when`(remoteUser.fetchUser(anyString(), anyString())).thenReturn(
+
+        Mockito.`when`(remoteUser.fetchUserToken(anyString(), anyString(), anyString())).thenReturn(
             Observable.just(user)
         )
         Mockito.`when`(localUser.getUser(anyString(), anyString())).thenReturn(Single.just(user))
 
-        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD)
+
+        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = "")
             .test()
             .assertValueCount(2)
             .assertValues(user.asObject(), user.asObject())
@@ -59,12 +61,14 @@ class UserRepositoryImplTest {
     @Test
     fun `should get user data from local when remote fails`() {
         val user = FakeUser.getUser()
-        Mockito.`when`(remoteUser.fetchUser(anyString(), anyString())).thenReturn(
+
+        Mockito.`when`(remoteUser.fetchUserToken(anyString(), anyString(), anyString())).thenReturn(
             Observable.error(Throwable(ERROR_MESSAGE))
         )
         Mockito.`when`(localUser.getUser(anyString(), anyString())).thenReturn(Single.just(user))
 
-        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD)
+
+        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = "")
             .test()
             .assertValueCount(1)
             .assertValue(user.asObject())

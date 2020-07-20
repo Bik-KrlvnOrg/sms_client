@@ -1,0 +1,37 @@
+ext {
+
+    Rx = [
+            rxKotlin: "io.reactivex.rxjava3:rxkotlin:${RxKotlin}",
+            rxJava  : "io.reactivex.rxjava3:rxjava:${RxJava}"
+    ]
+
+    kotlin = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
+    ]
+
+    javax = [
+            javax: "javax.inject:javax.inject:$JavaxInject"
+    ]
+
+    network = [
+            retrofit      : "com.squareup.retrofit2:retrofit:${Retrofit}",
+            rxJava_adapter: "com.squareup.retrofit2:adapter-rxjava3:${Retrofit}",
+            gson_converter: "com.squareup.retrofit2:converter-gson:${Retrofit}",
+    ]
+
+    testDependency = [
+            junit  : "junit:junit:${Junit}",
+            mockito: "org.mockito:mockito-core:${Mockito}"
+    ]
+
+    allImplementation = [
+            Rx     : Rx.values(),
+            Kotlin : kotlin.values(),
+            Javax  : javax.values(),
+            Network: network.values()
+    ]
+
+    allTestImplementation = [
+            test: testDependency.values()
+    ]
+}

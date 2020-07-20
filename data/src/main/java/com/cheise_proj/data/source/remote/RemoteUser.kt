@@ -5,6 +5,6 @@ import io.reactivex.rxjava3.core.Observable
 
 interface RemoteUser {
 
-    fun fetchUser(username: String, password: String): Observable<User>
+    fun fetchUserToken(username: String, password: String, type: String): Observable<User>
 
 }
