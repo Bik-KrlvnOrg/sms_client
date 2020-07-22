@@ -1,33 +1,23 @@
 ext {
 
     Rx = [
-            rxKotlin: "io.reactivex.rxjava3:rxkotlin:${RxKotlin}",
-            rxJava  : "io.reactivex.rxjava3:rxjava:${RxJava}"
-    ]
-
-    kotlin = [
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
-    ]
-
-    javax = [
-            javax: "javax.inject:javax.inject:$JavaxInject"
+            rxKotlin: deps.rxKotlin,
+            rxJava  : deps.rxJava
     ]
 
     network = [
-            retrofit      : "com.squareup.retrofit2:retrofit:${Retrofit}",
-            rxJava_adapter: "com.squareup.retrofit2:adapter-rxjava3:${Retrofit}",
-            gson_converter: "com.squareup.retrofit2:converter-gson:${Retrofit}",
+            retrofit      : deps.retrofit,
+            rxJava_adapter: deps.rxJava_adapter,
+            gson_converter: deps.gson_converter
     ]
 
     testDependency = [
-            junit  : "junit:junit:${Junit}",
-            mockito: "org.mockito:mockito-core:${Mockito}"
+            junit  : testDeps.junit,
+            mockito: testDeps.mockito
     ]
 
     allImplementation = [
             Rx     : Rx.values(),
-            Kotlin : kotlin.values(),
-            Javax  : javax.values(),
             Network: network.values()
     ]
 

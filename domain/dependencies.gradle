@@ -1,27 +1,18 @@
 ext {
 
     Rx = [
-            rxKotlin: "io.reactivex.rxjava3:rxkotlin:${RxKotlin}",
-            rxJava  : "io.reactivex.rxjava3:rxjava:${RxJava}"
+            rxKotlin: deps.rxKotlin,
+            rxJava  : deps.rxJava
     ]
 
-    kotlin = [
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
-    ]
-
-    javax = [
-            javax: "javax.inject:javax.inject:$JavaxInject"
-    ]
 
     testDependency = [
-            junit  : "junit:junit:${Junit}",
-            mockito: "org.mockito:mockito-core:${Mockito}"
+            junit  : testDeps.junit,
+            mockito: testDeps.mockito
     ]
 
     allImplementation = [
             Rx    : Rx.values(),
-            Kotlin: kotlin.values(),
-            Javax : javax.values()
     ]
 
     allTestImplementation = [
