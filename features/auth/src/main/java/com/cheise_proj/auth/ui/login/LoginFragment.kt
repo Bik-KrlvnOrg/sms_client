@@ -1,4 +1,4 @@
-package com.cheise_proj.auth.auth.ui.login
+package com.cheise_proj.auth.ui.login
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +10,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
+import com.cheise_proj.actions.Actions
+import com.cheise_proj.actions.UserArgs
 import com.cheise_proj.auth.BaseFragment
 import com.cheise_proj.auth.R
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
@@ -80,20 +82,24 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
                     showLoginFailed(it)
                 }
                 loginResult.success?.let {
-                    updateUiWithUser(it)
+                    navigateToDashboard(it)
                 }
             })
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
+    private fun navigateToDashboard(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
-        val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), welcome, Toast.LENGTH_LONG).show()
+        requireActivity().startActivity(
+            Actions.openDashboardIntent(
+                requireContext(),
+                UserArgs(model.displayName, model.userId)
+            )
+        )
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
-        val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), errorString, Toast.LENGTH_LONG).show()
     }
 
     private val editTextListener = object : TextWatcher {

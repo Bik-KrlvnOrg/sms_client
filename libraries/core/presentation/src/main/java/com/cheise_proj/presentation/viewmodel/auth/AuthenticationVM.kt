@@ -25,6 +25,7 @@ open class AuthenticationVM @Inject constructor(private val authenticationTask: 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
     var userResource: LiveData<Resource<User>> = MutableLiveData()
+    private val passwordMinimum = 4
 
     fun authenticateWithCredentials(username: String, password: String, type: UserType) {
         userResource =
@@ -74,7 +75,12 @@ open class AuthenticationVM @Inject constructor(private val authenticationTask: 
     private fun loadResult(it: Resource<User>?) {
         if (it?.status == Status.SUCCESS) {
             _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = it.data?.username))
+                LoginResult(
+                    success = LoggedInUserView(
+                        displayName = it.data?.username,
+                        userId = it.data?.id
+                    )
+                )
         }
     }
 
@@ -87,7 +93,7 @@ open class AuthenticationVM @Inject constructor(private val authenticationTask: 
     }
 
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 4
+        return password.length > passwordMinimum
     }
 
 

@@ -1,3 +1,5 @@
+include ':ui-component'
+include ':actions'
 include ':auth'
 include ':local-source'
 include ':remote-source'
@@ -8,13 +10,17 @@ include ':app'
 rootProject.name = "sms_client"
 
 // features
-project(":auth").projectDir = new File(rootDir,"features/auth")
+project(":auth").projectDir = new File(rootDir, "features/auth")
 
 // infra
-project(':data').projectDir = new File(rootDir,"libraries/infra/data")
-project(':local-source').projectDir = new File(rootDir,"libraries/infra/local-source")
-project(':remote-source').projectDir = new File(rootDir,"libraries/infra/remote-source")
+project(':data').projectDir = new File(rootDir, "libraries/infra/data")
+project(':local-source').projectDir = new File(rootDir, "libraries/infra/local-source")
+project(':remote-source').projectDir = new File(rootDir, "libraries/infra/remote-source")
 
 // core
-project(':domain').projectDir = new File(rootDir,"libraries/core/domain")
-project(':presentation').projectDir = new File(rootDir,"libraries/core/presentation")
+project(':domain').projectDir = new File(rootDir, "libraries/core/domain")
+project(':presentation').projectDir = new File(rootDir, "libraries/core/presentation")
+project(':actions').projectDir = new File(rootDir, "libraries/core/actions")
+
+// ui-component
+project(':ui-component').projectDir = new File(rootDir, 'libraries/ui-component')

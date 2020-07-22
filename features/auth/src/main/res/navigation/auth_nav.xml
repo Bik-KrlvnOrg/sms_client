@@ -3,11 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_nav"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/onBoardingFragment">
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.cheise_proj.auth.auth.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:name="com.cheise_proj.auth.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.cheise_proj.auth.ui.on_board.OnBoardingFragment"
+        android:label="Welcome"
+        tools:layout="@layout/fragment_on_boarding">
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.cheise_proj.auth.ui.reset_password.ResetPasswordFragment"
+        android:label="ResetPassword"
+        tools:layout="@layout/fragment_reset_password" />
 </navigation>

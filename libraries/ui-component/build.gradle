@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+
+}
+
+dependencies {
+    implementation uiDeps.material
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+}

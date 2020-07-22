@@ -1,5 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cheise_proj.auth">
 
-    /
+    <application>
+        <activity
+            android:name=".AuthActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="@string/action_AUTHENTICATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+    </application>
+
 </manifest>

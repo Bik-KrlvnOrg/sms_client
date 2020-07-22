@@ -119,7 +119,7 @@ class AuthenticationVMTest {
         expected.observeForever { }
         assertEquals(
             expected.value,
-            LoginResult(success = LoggedInUserView(displayName = user.username), error = null)
+            LoginResult(success = LoggedInUserView(displayName = user.username,userId = user.id), error = null)
         )
     }
 

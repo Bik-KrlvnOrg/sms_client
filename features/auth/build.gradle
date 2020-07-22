@@ -12,18 +12,21 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        debug {
+            resValue "string", "action_AUTHENTICATION", "com.cheise_proj.sms_client.auth.open"
         }
     }
+
 }
 
 dependencies {
 
+    implementation project(path: ':actions')
+    implementation project(path: ':presentation')
+    implementation project(path: ':ui-component')
+
     implementation allImplementation.values()
     kapt allKaptImplementation.values()
-    implementation project(path: ':presentation')
 
 
 }
