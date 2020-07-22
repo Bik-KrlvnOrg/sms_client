@@ -6,3 +6,15 @@ include ':presentation'
 include ':domain'
 include ':app'
 rootProject.name = "sms_client"
+
+// features
+project(":auth").projectDir = new File(rootDir,"features/auth")
+
+// infra
+project(':data').projectDir = new File(rootDir,"libraries/infra/data")
+project(':local-source').projectDir = new File(rootDir,"libraries/infra/local-source")
+project(':remote-source').projectDir = new File(rootDir,"libraries/infra/remote-source")
+
+// core
+project(':domain').projectDir = new File(rootDir,"libraries/core/domain")
+project(':presentation').projectDir = new File(rootDir,"libraries/core/presentation")
