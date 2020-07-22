@@ -1,0 +1,53 @@
+ext {
+    androidUI = [
+            appCompact  : "androidx.appcompat:appcompat:${Material}",
+            material    : "com.google.android.material:material:${Material}",
+            constraint  : "androidx.constraintlayout:constraintlayout:${Constraint}",
+            nav_fragment: "androidx.navigation:navigation-fragment-ktx:${Navigation}",
+            nav_ktx     : "androidx.navigation:navigation-ui-ktx:${Navigation}"
+    ]
+
+    Rx = [
+            rxKotlin: "io.reactivex.rxjava3:rxkotlin:${RxKotlin}",
+            rxJava  : "io.reactivex.rxjava3:rxjava:${RxJava}"
+    ]
+
+    kotlin = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
+    ]
+
+    di = [
+            javax         : "javax.inject:javax.inject:$JavaxInject",
+            dagger        : "com.google.dagger:dagger:${Dagger}",
+            dagger_android: "com.google.dagger:dagger-android:${Dagger}",
+            dagger_support: "com.google.dagger:dagger-android-support:${Dagger}"
+    ]
+
+    logging = [
+            timber: "com.jakewharton.timber:timber:${Timber}"
+    ]
+
+    lifeCycle = [
+            extensions         : "androidx.lifecycle:lifecycle-extensions:${LifeCycle}",
+            reactivestreams_ktx: "androidx.lifecycle:lifecycle-reactivestreams-ktx:${LifeCycle}",
+    ]
+
+    kaptDependency = [
+            lifecyle_common_java8: "androidx.lifecycle:lifecycle-common-java8:${LifeCycle}",
+            dagger               : "com.google.dagger:dagger-compiler:${Dagger}",
+            dagger_processor     : "com.google.dagger:dagger-android-processor:${Dagger}"
+    ]
+
+    allImplementation = [
+            Rx       : Rx.values(),
+            Kotlin   : kotlin.values(),
+            DI       : di.values(),
+            LifeCycle: lifeCycle.values(),
+            AndroidUI: androidUI.values(),
+            Logger   : logging.values()
+    ]
+
+    allKaptImplementation = [
+            Kapt: kaptDependency.values()
+    ]
+}
