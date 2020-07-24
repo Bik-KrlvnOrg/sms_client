@@ -10,8 +10,6 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
-import com.cheise_proj.actions.Actions
-import com.cheise_proj.actions.UserArgs
 import com.cheise_proj.auth.BaseFragment
 import com.cheise_proj.auth.R
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
@@ -41,7 +39,7 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
                 viewModel.login(
                     et_username.text.toString(),
                     et_password.text.toString(),
-                    "STUDENT"
+                    spinner_user_type.selectedItem.toString()
 
                 )
             }
@@ -53,7 +51,8 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
             viewModel.login(
                 et_username.text.toString(),
                 et_password.text.toString(),
-                "Student"
+                spinner_user_type.selectedItem.toString()
+
             )
         }
         subscribeObserver()
@@ -90,12 +89,12 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
     private fun navigateToDashboard(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
         Toast.makeText(requireContext(), welcome, Toast.LENGTH_LONG).show()
-        requireActivity().startActivity(
-            Actions.openDashboardIntent(
-                requireContext(),
-                UserArgs(model.displayName, model.userId)
-            )
-        )
+//        requireActivity().startActivity(
+//            Actions.openDashboardIntent(
+//                requireContext(),
+//                UserArgs(model.displayName, model.userId)
+//            )
+//        )
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

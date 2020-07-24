@@ -16,6 +16,7 @@ import com.cheise_proj.presentation.model.User
 import com.cheise_proj.presentation.viewmodel.BaseViewModel
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Observable
+import timber.log.Timber
 import javax.inject.Inject
 
 open class AuthenticationVM @Inject constructor(private val authenticationTask: AuthenticationTask) :
@@ -53,6 +54,7 @@ open class AuthenticationVM @Inject constructor(private val authenticationTask: 
             .subscribe({
                 loadResult(it)
             }, {
+                Timber.i(it.localizedMessage)
                 _loginResult.value = LoginResult(error = R.string.login_failed)
             })
         )
@@ -81,7 +83,9 @@ open class AuthenticationVM @Inject constructor(private val authenticationTask: 
                         userId = it.data?.id
                     )
                 )
+            return
         }
+        _loginResult.value = LoginResult(error = R.string.login_failed)
     }
 
     private fun isUserTypeValid(type: String): Boolean {

@@ -5,16 +5,12 @@ apply plugin: 'kotlin-kapt'
 apply from: 'dependencies.gradle'
 
 android {
-
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     defaultConfig {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-    }
-
-    buildTypes {
-        debug {
-            resValue "string", "action_AUTHENTICATION", "com.cheise_proj.sms_client.auth.open"
-        }
     }
 
 }
@@ -24,9 +20,11 @@ dependencies {
     implementation project(path: ':actions')
     implementation project(path: ':presentation')
     implementation project(path: ':ui-component')
-
+    androidTestImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0'
+    androidTestImplementation 'org.mockito:mockito-android:2.23.4'
+    debugImplementation testDeps.fragment_test
     implementation allImplementation.values()
     kapt allKaptImplementation.values()
-
+    kaptAndroidTest kaptDeps.daggerComplier
 
 }

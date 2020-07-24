@@ -10,7 +10,8 @@ object Actions {
     }
 
     fun openAuthIntent(context: Context): Intent {
-        val action = context.getString(R.string.action_name,"auth")
+//        val action = context.getString(R.string.action_name,"auth")
+        val action = "com.cheise_proj.auth.open"
         return internalIntent(context, action)
     }
 

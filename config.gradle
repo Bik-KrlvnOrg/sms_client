@@ -15,6 +15,10 @@ subprojects {
                 compileSdkVersion versions.compileSdkVersion
                 buildToolsVersion versions.buildToolsVersion
 
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
                 defaultConfig {
                     minSdkVersion versions.minSdkVersion
                     targetSdkVersion versions.targetSdkVersion
@@ -27,6 +31,7 @@ subprojects {
                 implementation coreDeps.core_ktx
                 implementation coreDeps.appCompact
                 androidTestImplementation androidTestDeps.values()
+                implementation deps.timber
             }
 
         }

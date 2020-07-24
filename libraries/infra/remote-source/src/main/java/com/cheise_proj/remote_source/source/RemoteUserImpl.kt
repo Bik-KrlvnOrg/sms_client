@@ -22,6 +22,7 @@ class RemoteUserImpl @Inject constructor(private val apiService: ApiService) : R
             )
         )
             .map {
+                println("RemoteUserImpl.fetchUserToken: $it")
                 it.toModel()
             }
 

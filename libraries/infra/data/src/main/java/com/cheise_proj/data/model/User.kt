@@ -5,7 +5,7 @@ data class User(
     var username: String,
     var avatarUrl: String,
     val schoolId: Int,
-    val type: String
+    var type: String
 ) {
     constructor() : this(0, "", "", 0, "")
     var password:String? = null

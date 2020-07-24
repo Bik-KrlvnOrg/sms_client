@@ -11,7 +11,6 @@ import retrofit2.http.POST
 interface UserService {
 
     @POST("users/login")
-    @FormUrlEncoded()
     fun loginUser(@Body credentialDto: CredentialDto): Observable<LoginDto>
 
 

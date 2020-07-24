@@ -5,9 +5,6 @@
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
     <string name="action_on_board_start">Start</string>
 
     <!--    SPINNER USER TYPE -->
@@ -19,4 +16,5 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_AUTHENTICATION">com.cheise_proj.auth.open</string>
 </resources>

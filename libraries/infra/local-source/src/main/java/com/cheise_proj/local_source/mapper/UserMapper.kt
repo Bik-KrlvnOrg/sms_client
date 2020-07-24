@@ -10,7 +10,7 @@ internal object UserMapper : Mapper<User, UserEntity> {
             id = obj.id,
             username = obj.username,
             type = obj.type,
-            avatarUrl = obj.type,
+            avatarUrl = obj.avatarUrl,
             schoolId = obj.schoolId
         ).apply {
             password = obj.password

@@ -21,6 +21,7 @@ class LocalUserImplTest {
     companion object {
         private const val USERNAME = "any_username"
         private const val USER_PASSWORD = "any_password"
+        private const val USER_TYPE = "any_type"
     }
 
     private lateinit var localUserImpl: LocalUserImpl
@@ -44,9 +45,11 @@ class LocalUserImplTest {
     @Test
     fun `should get user with credential`() {
         val actual = FakeUser.getUserEntity()
-        Mockito.`when`(userDao.getUser(anyString(), anyString())).thenReturn(Single.just(actual))
+        Mockito.`when`(userDao.getUser(anyString(), anyString(), anyString()))
+            .thenReturn(Single.just(actual))
 
-        localUserImpl.getUser(username = USERNAME, password = USER_PASSWORD).test()
+        localUserImpl.getUser(username = USERNAME, password = USER_PASSWORD, type = USER_TYPE)
+            .test()
             .assertValueCount(1)
             .assertValue { it == actual.toModel() }
             .assertComplete()

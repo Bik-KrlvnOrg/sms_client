@@ -7,7 +7,7 @@
             android:name=".AuthActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="@string/action_AUTHENTICATION" />
+                <action android:name="com.cheise_proj.auth.open" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 

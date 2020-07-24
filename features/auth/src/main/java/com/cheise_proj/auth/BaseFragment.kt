@@ -4,9 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cheise_proj.presentation.factory.ViewModelFactory
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 abstract class BaseFragment<VM : ViewModel> : DaggerFragment() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     protected lateinit var viewModel: VM
 
     abstract fun getViewModel(): Class<VM>
@@ -17,7 +22,7 @@ abstract class BaseFragment<VM : ViewModel> : DaggerFragment() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this)[getViewModel()]
+        viewModel = ViewModelProvider(this,viewModelFactory)[getViewModel()]
     }
 
 }

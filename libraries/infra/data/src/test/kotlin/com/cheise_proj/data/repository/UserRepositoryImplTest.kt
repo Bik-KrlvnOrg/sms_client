@@ -23,6 +23,7 @@ class UserRepositoryImplTest {
         private const val USER_NAME = "any_username"
         private const val USER_PASSWORD = "any_password"
         private const val ERROR_MESSAGE = "an error occurred"
+        private const val USER_TYPE = "STAFF"
     }
 
     private lateinit var userRepositoryImpl: UserRepositoryImpl
@@ -46,10 +47,11 @@ class UserRepositoryImplTest {
         Mockito.`when`(remoteUser.fetchUserToken(anyString(), anyString(), anyString())).thenReturn(
             Observable.just(user)
         )
-        Mockito.`when`(localUser.getUser(anyString(), anyString())).thenReturn(Single.just(user))
+        Mockito.`when`(localUser.getUser(anyString(), anyString(), anyString()))
+            .thenReturn(Single.just(user))
 
 
-        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = "")
+        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = USER_TYPE)
             .test()
             .assertValueCount(2)
             .assertValues(user.asObject(), user.asObject())
@@ -65,10 +67,10 @@ class UserRepositoryImplTest {
         Mockito.`when`(remoteUser.fetchUserToken(anyString(), anyString(), anyString())).thenReturn(
             Observable.error(Throwable(ERROR_MESSAGE))
         )
-        Mockito.`when`(localUser.getUser(anyString(), anyString())).thenReturn(Single.just(user))
+        Mockito.`when`(localUser.getUser(anyString(), anyString(), anyString()))
+            .thenReturn(Single.just(user))
 
-
-        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = "")
+        userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = USER_TYPE)
             .test()
             .assertValueCount(1)
             .assertValue(user.asObject())
