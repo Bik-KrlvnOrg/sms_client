@@ -28,6 +28,7 @@ dependencies {
     implementation project(path: ':domain')
     implementation allImplementation.values()
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':ui-component')
     testImplementation allTestImplementation.values()
     kapt allKaptImplementation.values()
 

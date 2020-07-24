@@ -19,7 +19,7 @@ import io.reactivex.rxjava3.core.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-open class AuthenticationVM @Inject constructor(private val authenticationTask: AuthenticationTask) :
+class AuthenticationVM @Inject constructor(private val authenticationTask: AuthenticationTask) :
     BaseViewModel() {
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm

@@ -27,10 +27,8 @@ subprojects {
                 }
             }
             dependencies {
-                implementation fileTree(dir: 'libs', include: ['*.jar'])
                 implementation coreDeps.core_ktx
                 implementation coreDeps.appCompact
-                androidTestImplementation androidTestDeps.values()
                 implementation deps.timber
             }
 

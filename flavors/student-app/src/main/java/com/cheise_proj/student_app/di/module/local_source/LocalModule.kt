@@ -1,7 +1,6 @@
 package com.cheise_proj.student_app.di.module.local_source
 
 import android.content.Context
-import androidx.room.Room
 import com.cheise_proj.data.source.local.LocalUser
 import com.cheise_proj.local_source.db.AppDatabase
 import com.cheise_proj.local_source.source.LocalUserImpl

@@ -1,7 +1,6 @@
 package com.cheise_proj.auth
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import dagger.android.support.DaggerAppCompatActivity
 
 class AuthActivity : DaggerAppCompatActivity() {

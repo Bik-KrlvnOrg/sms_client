@@ -1,7 +1,7 @@
 package com.cheise_proj.student_app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.cheise_proj.actions.Actions
 
 class MainActivity : AppCompatActivity() {

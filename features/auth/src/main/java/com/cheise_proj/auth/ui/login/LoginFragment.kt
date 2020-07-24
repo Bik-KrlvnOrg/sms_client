@@ -89,12 +89,7 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
     private fun navigateToDashboard(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
         Toast.makeText(requireContext(), welcome, Toast.LENGTH_LONG).show()
-//        requireActivity().startActivity(
-//            Actions.openDashboardIntent(
-//                requireContext(),
-//                UserArgs(model.displayName, model.userId)
-//            )
-//        )
+//        TODO(Set intent for dashboard)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -114,7 +109,7 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
             viewModel.loginDataChanged(
                 et_username.text.toString(),
                 et_password.text.toString(),
-                "Student"
+                spinner_user_type.selectedItem.toString()
             )
         }
     }
