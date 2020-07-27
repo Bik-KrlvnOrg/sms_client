@@ -1,0 +1,46 @@
+ext {
+
+    Rx = [
+            rxKotlin: deps.rxKotlin,
+            rxJava  : deps.rxJava,
+            rxBridge: deps.rxBridge
+    ]
+
+    lifeCycle = [
+            extensions: deps.lifeCycleExt,
+            streams   : deps.reactivestreams_ktx,
+    ]
+
+    room = [
+            runtime: deps.roomRuntime,
+            ktx    : deps.roomKtx,
+            rxJava : deps.roomRxJava2
+    ]
+
+    kaptDependency = [
+            lifecyle_common_java8: kaptDeps.lifecyle_common_java8,
+            compiler             : kaptDeps.roomComplier
+    ]
+
+    testDependency = [
+            junit    : testDeps.junit,
+            mockito  : testDeps.mockito,
+            core_arch: testDeps.core_arch,
+            room     : testDeps.room
+    ]
+
+
+    allImplementation = [
+            Rx       : Rx.values(),
+            LifeCycle: lifeCycle.values(),
+            Room     : room.values()
+    ]
+
+    allTestImplementation = [
+            test: testDependency.values()
+    ]
+
+    allKaptImplementation = [
+            kapt: kaptDependency.values()
+    ]
+}

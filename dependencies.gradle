@@ -1,0 +1,89 @@
+def RxJava = '3.0.0'
+def JavaxInject = "1"
+def Mockito = '2.22.0'
+def Junit = '4.13'
+def LifeCycle = '2.2.0'
+def TestRule = '1.2.0'
+def JunitExt = '1.1.1'
+def Arch_version = '2.1.0'
+def Retrofit = '2.9.0'
+def Room = '2.2.5'
+def Navigation = '2.2.2'
+def Material = '1.1.0'
+def Constraint = '1.1.3'
+def Timber = '4.7.1'
+def Dagger = '2.27'
+def CoreVersion = '1.3.0'
+def Espresso = '3.2.0'
+def OkHttp = '4.5.0'
+def Gson = '2.8.6'
+
+ext.coreDeps = [
+        kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
+        core_ktx  : "androidx.core:core-ktx:${CoreVersion}",
+        appCompact: "androidx.appcompat:appcompat:${Material}"
+]
+
+ext.uiDeps = [
+        appCompact  : "androidx.appcompat:appcompat:${Material}",
+        material    : "com.google.android.material:material:${Material}",
+        constraint  : "androidx.constraintlayout:constraintlayout:${Constraint}",
+        nav_fragment: "androidx.navigation:navigation-fragment-ktx:${Navigation}",
+        nav_ktx     : "androidx.navigation:navigation-ui-ktx:${Navigation}"
+]
+
+ext.deps = [
+        rxKotlin           : "io.reactivex.rxjava3:rxkotlin:${RxJava}",
+        rxJava             : "io.reactivex.rxjava3:rxjava:${RxJava}",
+        rxJavaAndroid      : "io.reactivex.rxjava3:rxandroid:${RxJava}",
+        rxBridge           : "com.github.akarnokd:rxjava3-bridge:${RxJava}",
+
+        javax              : "javax.inject:javax.inject:$JavaxInject",
+        lifeCycleExt       : "androidx.lifecycle:lifecycle-extensions:${LifeCycle}",
+        reactivestreams_ktx: "androidx.lifecycle:lifecycle-reactivestreams-ktx:${LifeCycle}",
+
+        retrofit           : "com.squareup.retrofit2:retrofit:${Retrofit}",
+        rxJava_adapter     : "com.squareup.retrofit2:adapter-rxjava3:${Retrofit}",
+        gson_converter     : "com.squareup.retrofit2:converter-gson:${Retrofit}",
+
+        okhttp             : "com.squareup.okhttp3:okhttp:${OkHttp}",
+        okhttp_logger      : "com.squareup.okhttp3:logging-interceptor:${OkHttp}",
+        gson               : "com.google.code.gson:gson:${Gson}",
+
+        roomRuntime        : "androidx.room:room-runtime:${Room}",
+        roomKtx            : "androidx.room:room-ktx:${Room}",
+        roomRxJava2        : "androidx.room:room-rxjava2:${Room}",
+
+        timber             : "com.jakewharton.timber:timber:${Timber}",
+
+        dagger             : "com.google.dagger:dagger:${Dagger}",
+        dagger_android     : "com.google.dagger:dagger-android:${Dagger}",
+        dagger_support     : "com.google.dagger:dagger-android-support:${Dagger}"
+]
+
+ext.kaptDeps = [
+        lifecyle_common_java8: "androidx.lifecycle:lifecycle-common-java8:${LifeCycle}",
+        roomComplier         : "androidx.room:room-compiler:${Room}",
+        daggerProcessor      : "com.google.dagger:dagger-android-processor:${Dagger}",
+        daggerComplier       : "com.google.dagger:dagger-compiler:${Dagger}"
+]
+
+ext.testDeps = [
+        junit        : "junit:junit:${Junit}",
+        mockito      : "org.mockito:mockito-core:${Mockito}",
+        core_arch    : "androidx.arch.core:core-testing:${Arch_version}",
+        room         : "androidx.room:room-testing:${Room}",
+        fragment_test: "androidx.fragment:fragment-testing:1.2.5" //uses debugImplementation
+]
+
+
+ext.androidTestDeps = [
+        ext        : "androidx.test.ext:junit:${JunitExt}",
+        test_runner: "androidx.test:runner:${TestRule}",
+        test_rule  : "androidx.test:rules:1.1.1",
+        testCore   : "androidx.test:core:1.2.0",
+        mockito    : "org.mockito:mockito-android:3.2.0",
+        espresso   : "androidx.test.espresso:espresso-core:${Espresso}"
+]
+
+

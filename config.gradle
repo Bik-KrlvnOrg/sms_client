@@ -1,0 +1,42 @@
+ext.versions = [
+        minSdkVersion    : 22,
+        targetSdkVersion : 29,
+        versionCode      : 1,
+        versionName      : '1.0',
+        compileSdkVersion: 29,
+        buildToolsVersion: '29.0.3',
+        applicationId    : 'com.cheise_proj.sms_client'
+]
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                compileSdkVersion versions.compileSdkVersion
+                buildToolsVersion versions.buildToolsVersion
+
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+                defaultConfig {
+                    minSdkVersion versions.minSdkVersion
+                    targetSdkVersion versions.targetSdkVersion
+                    versionCode versions.versionCode
+                    versionName versions.versionName
+                }
+            }
+            dependencies {
+                implementation coreDeps.core_ktx
+                implementation coreDeps.appCompact
+                implementation deps.timber
+            }
+
+        }
+        dependencies {
+            implementation coreDeps.kotlin
+            implementation deps.javax
+        }
+
+    }
+}

@@ -1,0 +1,21 @@
+ext {
+
+    Rx = [
+            rxKotlin: deps.rxKotlin,
+            rxJava  : deps.rxJava
+    ]
+
+
+    testDependency = [
+            junit  : testDeps.junit,
+            mockito: testDeps.mockito
+    ]
+
+    allImplementation = [
+            Rx    : Rx.values(),
+    ]
+
+    allTestImplementation = [
+            test: testDependency.values()
+    ]
+}

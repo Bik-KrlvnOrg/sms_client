@@ -1,0 +1,27 @@
+ext {
+
+    Rx = [
+            rxKotlin: deps.rxKotlin,
+            rxJava  : deps.rxJava
+    ]
+
+    network = [
+            retrofit      : deps.retrofit,
+            rxJava_adapter: deps.rxJava_adapter,
+            gson_converter: deps.gson_converter
+    ]
+
+    testDependency = [
+            junit  : testDeps.junit,
+            mockito: testDeps.mockito
+    ]
+
+    allImplementation = [
+            Rx     : Rx.values(),
+            Network: network.values()
+    ]
+
+    allTestImplementation = [
+            test: testDependency.values()
+    ]
+}

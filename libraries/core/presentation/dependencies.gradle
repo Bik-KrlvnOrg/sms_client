@@ -1,0 +1,29 @@
+ext {
+
+    Rx = [
+            rxKotlin: deps.rxKotlin,
+            rxJava  : deps.rxJava
+    ]
+
+    lifeCycle = [
+            extensions: deps.lifeCycleExt,
+            streams   : deps.reactivestreams_ktx,
+    ]
+
+    kaptDependency = [
+            lifecyle_common_java8: kaptDeps.lifecyle_common_java8
+    ]
+
+    allImplementation = [
+            Rx       : Rx.values(),
+            LifeCycle: lifeCycle.values()
+    ]
+
+    allTestImplementation = [
+            test: testDeps.values()
+    ]
+
+    allKaptImplementation = [
+            kapt: kaptDependency.values()
+    ]
+}
