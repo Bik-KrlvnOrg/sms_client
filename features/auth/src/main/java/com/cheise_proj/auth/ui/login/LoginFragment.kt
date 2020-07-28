@@ -10,6 +10,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
+import com.cheise_proj.actions.Actions
+import com.cheise_proj.actions.UserArgs
 import com.cheise_proj.auth.BaseFragment
 import com.cheise_proj.auth.R
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
@@ -89,7 +91,14 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
     private fun navigateToDashboard(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
         Toast.makeText(requireContext(), welcome, Toast.LENGTH_LONG).show()
-//        TODO(Set intent for dashboard)
+        requireActivity().startActivity(
+            Actions.openDashboardIntent(
+                requireContext(),
+                UserArgs(displayName = model.displayName, userId = model.userId)
+            )
+        )
+        requireActivity().finish()
+
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

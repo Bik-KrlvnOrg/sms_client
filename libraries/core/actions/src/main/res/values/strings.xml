@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_name">com.cheise_proj.sms_client.%1$s.open</string>
+    <string name="action_name">com.cheise_proj.%1$s.open</string>
 </resources>

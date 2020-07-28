@@ -51,8 +51,6 @@ dependencies {
 
     // Gson
     implementation deps.gson
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // annotation processors
     kapt kaptDeps.values()
@@ -65,4 +63,5 @@ dependencies {
     implementation project(path: ':actions')
     implementation project(path: ':remote-source')
     implementation project(path: ':ui-component')
+    implementation project(path: ':dashboard')
 }
