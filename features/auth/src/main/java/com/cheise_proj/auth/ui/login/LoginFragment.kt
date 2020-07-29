@@ -10,12 +10,14 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.cheise_proj.actions.Actions
 import com.cheise_proj.actions.UserArgs
 import com.cheise_proj.auth.BaseFragment
 import com.cheise_proj.auth.R
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
 import com.cheise_proj.presentation.viewmodel.auth.LoggedInUserView
+import com.cheise_proj.ui_component.hideKeyboard
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment<AuthenticationVM>() {
@@ -50,6 +52,7 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
 
         btn_login.setOnClickListener {
             progressBar.visibility = View.VISIBLE
+            it.hideKeyboard()
             viewModel.login(
                 et_username.text.toString(),
                 et_password.text.toString(),
@@ -91,13 +94,14 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
     private fun navigateToDashboard(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
         Toast.makeText(requireContext(), welcome, Toast.LENGTH_LONG).show()
-        requireActivity().startActivity(
-            Actions.openDashboardIntent(
-                requireContext(),
-                UserArgs(displayName = model.displayName, userId = model.userId)
+        val userType = spinner_user_type.selectedItem.toString()
+        findNavController().popBackStack()
+        findNavController().navigate(
+            Actions.openDashboard(
+                context = requireContext(),
+                user = UserArgs(userType, model.userId)
             )
         )
-        requireActivity().finish()
 
     }
 

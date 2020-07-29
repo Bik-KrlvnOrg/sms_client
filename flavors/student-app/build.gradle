@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
+apply from: 'dependencies.gradle'
 android {
 
     defaultConfig {
@@ -25,32 +25,8 @@ android {
 
 dependencies {
 
-    // Dagger
-    implementation deps.dagger
-    implementation deps.dagger_android
-    implementation deps.dagger_support
-
-    // Room
-    implementation deps.roomRuntime
-    implementation deps.roomKtx
-    implementation deps.roomRxJava2
-    implementation deps.timber
-
-    // RxJava
-    implementation deps.rxJava
-    implementation deps.rxKotlin
-    implementation deps.rxJavaAndroid
-
-    // Retrofit
-    implementation deps.retrofit
-    implementation deps.rxJava_adapter
-    implementation deps.gson_converter
-
-    // OkHttp
-    implementation deps.okhttp_logger
-
-    // Gson
-    implementation deps.gson
+    implementation libs.values()
+    implementation project(path: ':dashboard')
 
     // annotation processors
     kapt kaptDeps.values()
@@ -63,5 +39,5 @@ dependencies {
     implementation project(path: ':actions')
     implementation project(path: ':remote-source')
     implementation project(path: ':ui-component')
-    implementation project(path: ':dashboard')
+
 }

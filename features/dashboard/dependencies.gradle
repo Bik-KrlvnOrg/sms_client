@@ -1,0 +1,45 @@
+ext {
+    androidUI = [
+            appCompact  : uiDeps.appCompact,
+            material    : uiDeps.material,
+            constraint  : uiDeps.constraint,
+            nav_fragment: uiDeps.nav_fragment,
+            nav_ktx     : uiDeps.nav_ktx
+    ]
+
+    Rx = [
+            rxKotlin: deps.rxKotlin,
+            rxJava  : deps.rxJava
+    ]
+
+
+    di = [
+            dagger        : deps.dagger,
+            dagger_android: deps.dagger_android,
+            dagger_support: deps.dagger_support
+    ]
+
+
+    lifeCycle = [
+            extensions         : deps.lifeCycleExt,
+            reactivestreams_ktx: deps.reactivestreams_ktx
+    ]
+
+    kaptDependency = [
+            lifecyle_common_java8: kaptDeps.lifecyle_common_java8,
+            dagger_complier      : kaptDeps.daggerComplier,
+            dagger_processor     : kaptDeps.daggerProcessor
+    ]
+
+    allImplementation = [
+            Rx       : Rx.values(),
+            DI       : di.values(),
+            LifeCycle: lifeCycle.values(),
+            AndroidUI: androidUI.values(),
+            Logger   : deps.timber
+    ]
+
+    allKaptImplementation = [
+            Kapt: kaptDependency.values()
+    ]
+}

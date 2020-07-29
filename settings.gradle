@@ -15,6 +15,7 @@ rootProject.name = "sms_client"
 project(":auth").projectDir = new File(rootDir, "features/auth")
 project(":dashboard").projectDir = new File(rootDir, "features/dashboard")
 
+
 // infra
 project(':data').projectDir = new File(rootDir, "libraries/infra/data")
 project(':local-source').projectDir = new File(rootDir, "libraries/infra/local-source")

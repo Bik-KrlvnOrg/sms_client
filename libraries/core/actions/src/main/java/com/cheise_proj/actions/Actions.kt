@@ -2,15 +2,16 @@ package com.cheise_proj.actions
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 
 object Actions {
-    fun openDashboardIntent(context: Context, user:UserArgs): Intent {
-        val action = context.getString(R.string.action_name,"dashboard")
-        return internalIntent(context, action).putExtra(EXTRA_USER, user)
+    fun openDashboard(context: Context, user: UserArgs? = null): Uri {
+        val link = context.getString(R.string.deep_link_name, "dashboard")
+        return Uri.parse("$link/${user?.userType}/${user?.userId}")
     }
 
     fun openAuthIntent(context: Context): Intent {
-        val action = context.getString(R.string.action_name,"auth")
+        val action = context.getString(R.string.action_name, "auth")
         return internalIntent(context, action)
     }
 
