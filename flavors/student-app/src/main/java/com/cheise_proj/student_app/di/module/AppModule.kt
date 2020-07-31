@@ -2,9 +2,11 @@ package com.cheise_proj.student_app.di.module
 
 import android.app.Application
 import android.content.Context
+import com.cheise_proj.student_app.di.module.actions.ActionsModule
 import com.cheise_proj.student_app.di.module.data.DataModule
 import com.cheise_proj.student_app.di.module.domain.DomainModule
 import com.cheise_proj.student_app.di.module.local_source.LocalModule
+import com.cheise_proj.student_app.di.module.navigation.AppNavigationModule
 import com.cheise_proj.student_app.di.module.presentation.PresentationModule
 import com.cheise_proj.student_app.di.module.remote_source.RemoteModule
 import dagger.Module
@@ -16,7 +18,9 @@ import dagger.Provides
         DataModule::class,
         PresentationModule::class,
         RemoteModule::class,
-        LocalModule::class
+        LocalModule::class,
+        AppNavigationModule::class,
+        ActionsModule::class
     ]
 )
 internal class AppModule {

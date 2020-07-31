@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_nav"
-    app:startDestination="@id/onBoardingFragment">
+    app:startDestination="@id/onBoardingFragment"
+    tools:ignore="UnusedNavigation">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -13,6 +14,7 @@
         <action
             android:id="@+id/action_loginFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
+        <deepLink app:uri="smsClient://login" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -21,7 +23,11 @@
         tools:layout="@layout/fragment_on_boarding">
         <action
             android:id="@+id/action_onBoardingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/onBoardingFragment"
+            app:popUpToInclusive="true" />
+
+        <deepLink app:uri="smsClient://onBoarding"  />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"

@@ -3,4 +3,7 @@
     <string name="invalid_password">Password must be > 4 characters</string>
     <string name="invalid_user_type">Choose a user type</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!--    MENU-->
+    <string name="menu_home">Home</string>
 </resources>

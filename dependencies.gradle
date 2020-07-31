@@ -17,6 +17,7 @@ def CoreVersion = '1.3.0'
 def Espresso = '3.2.0'
 def OkHttp = '4.5.0'
 def Gson = '2.8.6'
+def Robolelectric = '4.3'
 
 ext.coreDeps = [
         kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
@@ -73,7 +74,8 @@ ext.testDeps = [
         mockito      : "org.mockito:mockito-core:${Mockito}",
         core_arch    : "androidx.arch.core:core-testing:${Arch_version}",
         room         : "androidx.room:room-testing:${Room}",
-        fragment_test: "androidx.fragment:fragment-testing:1.2.5" //uses debugImplementation
+        fragment_test: "androidx.fragment:fragment-testing:1.2.5", //uses debugImplementation
+        robolelectric: "org.robolectric:robolectric:${Robolelectric}"
 ]
 
 

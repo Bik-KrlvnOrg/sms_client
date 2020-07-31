@@ -2,12 +2,29 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dashboard_graph"
-    app:startDestination="@id/dashboardFragment">
+    android:id="@+id/dashboard_nav"
+    app:startDestination="@id/dashboardFragment"
+    tools:ignore="UnusedNavigation">
 
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.cheise_proj.dashboard.ui.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="Home"
+        tools:layout="@layout/fragment_dashboard">
+
+        <argument
+            android:name="user_id"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="user_type"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+
+        <deepLink app:uri="smsClient://dashboard/{user_type}/{user_id}" />
+        <deepLink app:uri="smsClient://dashboard" />
+    </fragment>
 </navigation>

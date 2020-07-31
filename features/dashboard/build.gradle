@@ -1,10 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'kotlin-kapt'
+apply from: 'dependencies.gradle'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -18,11 +25,8 @@ android {
 }
 
 dependencies {
-    implementation uiDeps.material
-    implementation uiDeps.constraint
-    implementation uiDeps.nav_fragment
-    implementation uiDeps.nav_ktx
-
+    implementation allImplementation.values()
     implementation project(path: ':ui-component')
-    implementation project(path: ':actions')
+    implementation project(path: ':presentation')
+    kapt allKaptImplementation.values()
 }
