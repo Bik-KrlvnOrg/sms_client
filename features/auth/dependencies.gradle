@@ -1,6 +1,5 @@
 ext {
     androidUI = [
-            appCompact  : uiDeps.appCompact,
             material    : uiDeps.material,
             constraint  : uiDeps.constraint,
             nav_fragment: uiDeps.nav_fragment,

@@ -10,7 +10,7 @@ import com.cheise_proj.dashboard.R
 import com.cheise_proj.dashboard.model.DashboardMenu
 import kotlinx.android.synthetic.main.menu_items.view.*
 
-class DashboardAdapter :
+class DashboardAdapter(private val onItemClick: (DashboardMenu?) -> Unit={} ) :
     ListAdapter<DashboardMenu, DashboardAdapter.DashboardVh>(DashboardDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardVh {
@@ -22,14 +22,19 @@ class DashboardAdapter :
     }
 
     override fun onBindViewHolder(holder: DashboardVh, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onItemClick)
     }
 
+
     class DashboardVh(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: DashboardMenu?) {
+        fun bind(
+            item: DashboardMenu?,
+            onItemClick: (DashboardMenu?) -> Unit
+        ) {
             with(itemView) {
                 item_name.text = item?.title
                 item_img.setImageDrawable(item?.image)
+                this.setOnClickListener { onItemClick(item) }
             }
         }
     }

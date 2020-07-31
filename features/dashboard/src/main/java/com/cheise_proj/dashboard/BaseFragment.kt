@@ -1,4 +1,4 @@
-package com.cheise_proj.auth
+package com.cheise_proj.dashboard
 
 import android.os.Bundle
 import android.view.View
@@ -11,10 +11,10 @@ import javax.inject.Inject
 
 abstract class BaseFragment<VM : ViewModel> : DaggerFragment() {
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var navigation: AppNavigation
 
     @Inject
-    lateinit var navigation: AppNavigation
+    lateinit var factory: ViewModelFactory
 
     protected lateinit var viewModel: VM
 
@@ -22,11 +22,6 @@ abstract class BaseFragment<VM : ViewModel> : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
+        viewModel = ViewModelProvider(this, factory)[getViewModel()]
     }
-
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(this, viewModelFactory)[getViewModel()]
-    }
-
 }

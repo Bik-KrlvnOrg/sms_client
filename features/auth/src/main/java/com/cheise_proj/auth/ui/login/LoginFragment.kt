@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.cheise_proj.actions.Actions
-import com.cheise_proj.actions.UserArgs
 import com.cheise_proj.auth.BaseFragment
 import com.cheise_proj.auth.R
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
@@ -94,13 +92,9 @@ class LoginFragment : BaseFragment<AuthenticationVM>() {
     private fun navigateToDashboard(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
         Toast.makeText(requireContext(), welcome, Toast.LENGTH_LONG).show()
-        val userType = spinner_user_type.selectedItem.toString()
         findNavController().popBackStack()
         findNavController().navigate(
-            Actions.openDashboard(
-                context = requireContext(),
-                user = UserArgs(userType, model.userId)
-            )
+            navigation.deepLink("dashboard")
         )
 
     }

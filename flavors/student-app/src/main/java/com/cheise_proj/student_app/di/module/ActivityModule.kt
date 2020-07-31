@@ -1,7 +1,13 @@
 package com.cheise_proj.student_app.di.module
 
-import com.cheise_proj.student_app.di.module.auth_feature.AuthFeatureModule
+import com.cheise_proj.auth.di.AuthFragmentModule
+import com.cheise_proj.dashboard.di.DashboardFragmentModule
+import com.cheise_proj.student_app.MainActivity
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
-@Module(includes = [AuthFeatureModule::class])
-internal interface ActivityModule
+@Module
+internal interface ActivityModule {
+    @ContributesAndroidInjector(modules = [AuthFragmentModule::class, DashboardFragmentModule::class])
+    fun contributeMainActivity(): MainActivity
+}

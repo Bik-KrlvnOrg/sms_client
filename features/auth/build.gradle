@@ -17,7 +17,6 @@ android {
 
 dependencies {
 
-    implementation project(path: ':actions')
     implementation project(path: ':presentation')
     implementation project(path: ':ui-component')
     debugImplementation testDeps.fragment_test

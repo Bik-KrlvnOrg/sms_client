@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: 'dependencies.gradle'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
@@ -26,4 +27,6 @@ android {
 dependencies {
     implementation allImplementation.values()
     implementation project(path: ':ui-component')
+    implementation project(path: ':presentation')
+    kapt allKaptImplementation.values()
 }

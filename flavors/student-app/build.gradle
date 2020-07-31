@@ -5,6 +5,12 @@ apply plugin: 'kotlin-kapt'
 apply from: 'dependencies.gradle'
 android {
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = false
+        }
+    }
+
     defaultConfig {
         applicationId "com.cheise_proj.student_app"
 
@@ -15,6 +21,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', base_url_release
         }
         debug {
             buildConfigField 'String', 'BASE_URL', base_url_debug
@@ -26,14 +33,16 @@ android {
 dependencies {
 
     implementation libs.values()
-    implementation project(path: ':dashboard')
-
+    testImplementation testDeps.junit
+    testImplementation testDeps.mockito
+    testImplementation testDeps.robolelectric
     // annotation processors
     kapt kaptDeps.values()
 
     implementation project(path: ':local-source')
     implementation project(path: ':presentation')
     implementation project(path: ':auth')
+    implementation project(path: ':dashboard')
     implementation project(path: ':data')
     implementation project(path: ':domain')
     implementation project(path: ':actions')

@@ -14,8 +14,9 @@
 
         <argument
             android:name="user_id"
-            android:defaultValue="0"
-            app:argType="integer" />
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="user_type"
             android:defaultValue="@null"
@@ -24,5 +25,6 @@
 
 
         <deepLink app:uri="smsClient://dashboard/{user_type}/{user_id}" />
+        <deepLink app:uri="smsClient://dashboard" />
     </fragment>
 </navigation>
