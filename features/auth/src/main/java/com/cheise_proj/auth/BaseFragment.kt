@@ -5,12 +5,16 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.cheise_proj.presentation.factory.ViewModelFactory
+import com.cheise_proj.presentation.navigation.AppNavigation
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 abstract class BaseFragment<VM : ViewModel> : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    @Inject
+    lateinit var navigation: AppNavigation
 
     protected lateinit var viewModel: VM
 
@@ -22,7 +26,7 @@ abstract class BaseFragment<VM : ViewModel> : DaggerFragment() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this,viewModelFactory)[getViewModel()]
+        viewModel = ViewModelProvider(this, viewModelFactory)[getViewModel()]
     }
 
 }

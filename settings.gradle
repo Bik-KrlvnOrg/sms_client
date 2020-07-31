@@ -1,3 +1,4 @@
+include ':dashboard'
 include ':student-app'
 include ':ui-component'
 include ':actions'
@@ -12,6 +13,8 @@ rootProject.name = "sms_client"
 
 // features
 project(":auth").projectDir = new File(rootDir, "features/auth")
+project(":dashboard").projectDir = new File(rootDir, "features/dashboard")
+
 
 // infra
 project(':data').projectDir = new File(rootDir, "libraries/infra/data")
@@ -27,4 +30,4 @@ project(':actions').projectDir = new File(rootDir, "libraries/core/actions")
 project(':ui-component').projectDir = new File(rootDir, 'libraries/ui-component')
 
 // flavors
-project(':student-app').projectDir = new File(rootDir,'flavors/student-app')
+project(':student-app').projectDir = new File(rootDir, 'flavors/student-app')

@@ -1,3 +1,4 @@
 # Features
 
 * auth
+* dashboard

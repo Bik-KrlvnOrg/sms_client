@@ -17,11 +17,8 @@ android {
 
 dependencies {
 
-    implementation project(path: ':actions')
     implementation project(path: ':presentation')
     implementation project(path: ':ui-component')
-    androidTestImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0'
-    androidTestImplementation 'org.mockito:mockito-android:2.23.4'
     debugImplementation testDeps.fragment_test
     implementation allImplementation.values()
     kapt allKaptImplementation.values()
