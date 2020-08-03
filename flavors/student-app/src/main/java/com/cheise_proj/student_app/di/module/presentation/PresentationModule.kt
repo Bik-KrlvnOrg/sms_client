@@ -6,11 +6,12 @@ import com.cheise_proj.presentation.factory.ViewModelFactory
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
 import com.cheise_proj.presentation.viewmodel.dashboard.DashboardVM
 import com.cheise_proj.student_app.di.key.ViewModelKey
+import com.cheise_proj.student_app.di.module.preference.PreferenceModule
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-@Module(includes = [PresentationModule.Binders::class])
+@Module(includes = [PresentationModule.Binders::class, PreferenceModule::class])
 internal class PresentationModule {
     @Module
     internal interface Binders {

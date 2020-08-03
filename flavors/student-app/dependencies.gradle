@@ -1,9 +1,9 @@
 ext {
 
     libs = [
-            constraint : uiDeps.constraint,
-            navFragment: uiDeps.nav_fragment,
-            navKTx     : uiDeps.nav_ktx,
+            constraint        : uiDeps.constraint,
+            navFragment       : uiDeps.nav_fragment,
+            navKTx            : uiDeps.nav_ktx,
 
             dagger            : deps.dagger,
             dagger_android    : deps.dagger_android,
@@ -24,6 +24,8 @@ ext {
             okhttp_logger     : deps.okhttp_logger,
 
             gson              : deps.gson,
+
+            preference        : deps.preference
     ]
 }
 
