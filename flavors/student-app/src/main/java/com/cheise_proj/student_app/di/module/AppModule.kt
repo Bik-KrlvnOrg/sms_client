@@ -2,6 +2,8 @@ package com.cheise_proj.student_app.di.module
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import com.cheise_proj.student_app.di.module.actions.ActionsModule
 import com.cheise_proj.student_app.di.module.data.DataModule
 import com.cheise_proj.student_app.di.module.domain.DomainModule
@@ -11,6 +13,7 @@ import com.cheise_proj.student_app.di.module.presentation.PresentationModule
 import com.cheise_proj.student_app.di.module.remote_source.RemoteModule
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module(
     includes = [
@@ -27,4 +30,9 @@ internal class AppModule {
 
     @Provides
     fun provideContext(application: Application): Context = application.applicationContext
+
+    @Singleton
+    @Provides
+    fun provideSharedPreference(context: Context): SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
 }

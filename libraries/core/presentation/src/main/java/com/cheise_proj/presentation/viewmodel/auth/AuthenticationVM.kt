@@ -13,13 +13,18 @@ import com.cheise_proj.presentation.extensions.toModel
 import com.cheise_proj.presentation.model.Resource
 import com.cheise_proj.presentation.model.Status
 import com.cheise_proj.presentation.model.User
+import com.cheise_proj.presentation.model.UserSession
+import com.cheise_proj.presentation.preference.AppPreference
 import com.cheise_proj.presentation.viewmodel.BaseViewModel
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-class AuthenticationVM @Inject constructor(private val authenticationTask: AuthenticationTask) :
+class AuthenticationVM @Inject constructor(
+    private val authenticationTask: AuthenticationTask,
+    private val preference: AppPreference
+) :
     BaseViewModel() {
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -83,9 +88,21 @@ class AuthenticationVM @Inject constructor(private val authenticationTask: Authe
                         userId = it.data?.id
                     )
                 )
+            applyLoginPreference(it.data)
             return
         }
         _loginResult.value = LoginResult(error = R.string.login_failed)
+    }
+
+    private fun applyLoginPreference(data: User?) {
+        preference.setLoggedInStatus(status = true)
+        val session = UserSession(
+            userId = data?.id!!,
+            displayName = data.username,
+            schoolId = data.schoolId.toString(),
+            userType = data.type.name
+        )
+        preference.setUserSession(session)
     }
 
     private fun isUserTypeValid(type: String): Boolean {

@@ -6,4 +6,12 @@
 
     <!--    MENU-->
     <string name="menu_home">Home</string>
+
+    <!--    PREFS-->
+    <string name="pref_key_logged_in_status">logged_in_status</string>
+    <string name="pref_key_on_boarding_status">on_boarding_status</string>
+    <string name="pref_key_user_id">user_id</string>
+    <string name="pref_key_display_name">user_display_name</string>
+    <string name="pref_key_school_id">school_id</string>
+    <string name="pref_key_user_type">user_type</string>
 </resources>

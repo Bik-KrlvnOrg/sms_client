@@ -18,15 +18,17 @@ def Espresso = '3.2.0'
 def OkHttp = '4.5.0'
 def Gson = '2.8.6'
 def Robolelectric = '4.3'
+def Preference = '1.1.1'
+def AppCompact = '1.1.0'
 
 ext.coreDeps = [
         kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
         core_ktx  : "androidx.core:core-ktx:${CoreVersion}",
-        appCompact: "androidx.appcompat:appcompat:${Material}"
+        appCompact: "androidx.appcompat:appcompat:${AppCompact}"
 ]
 
 ext.uiDeps = [
-        appCompact  : "androidx.appcompat:appcompat:${Material}",
+        appCompact  : "androidx.appcompat:appcompat:${AppCompact}",
         material    : "com.google.android.material:material:${Material}",
         constraint  : "androidx.constraintlayout:constraintlayout:${Constraint}",
         nav_fragment: "androidx.navigation:navigation-fragment-ktx:${Navigation}",
@@ -59,7 +61,8 @@ ext.deps = [
 
         dagger             : "com.google.dagger:dagger:${Dagger}",
         dagger_android     : "com.google.dagger:dagger-android:${Dagger}",
-        dagger_support     : "com.google.dagger:dagger-android-support:${Dagger}"
+        dagger_support     : "com.google.dagger:dagger-android-support:${Dagger}",
+        preference         : "androidx.preference:preference-ktx:${Preference}"
 ]
 
 ext.kaptDeps = [

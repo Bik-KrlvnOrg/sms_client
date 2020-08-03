@@ -7,6 +7,7 @@ import com.cheise_proj.domain.repository.UserRepository
 import com.cheise_proj.domain.usecases.user.AuthenticationTask
 import com.cheise_proj.presentation.extensions.toEntity
 import com.cheise_proj.presentation.model.Status
+import com.cheise_proj.presentation.preference.AppPreference
 import com.cheise_proj.presentation.utils.FakeUser
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
 import com.cheise_proj.presentation.viewmodel.auth.LoggedInUserView
@@ -43,6 +44,8 @@ class AuthenticationVMTest {
     @Mock
     lateinit var userRepository: UserRepository
 
+    @Mock lateinit var appPreference: AppPreference
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -50,7 +53,8 @@ class AuthenticationVMTest {
             AuthenticationTask(userRepository, Schedulers.trampoline(), Schedulers.trampoline())
         authenticationVM =
             AuthenticationVM(
-                authenticationTask
+                authenticationTask,
+                appPreference
             )
     }
 
