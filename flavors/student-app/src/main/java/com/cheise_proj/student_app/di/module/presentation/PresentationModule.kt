@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.cheise_proj.presentation.factory.ViewModelFactory
 import com.cheise_proj.presentation.viewmodel.auth.AuthenticationVM
+import com.cheise_proj.presentation.viewmodel.auth.ProfileVM
 import com.cheise_proj.presentation.viewmodel.dashboard.DashboardVM
 import com.cheise_proj.student_app.di.key.ViewModelKey
 import com.cheise_proj.student_app.di.module.preference.PreferenceModule
@@ -32,5 +33,11 @@ internal class PresentationModule {
         @ViewModelKey(DashboardVM::class)
         fun bindDashboardVM(dashboardVM: DashboardVM): ViewModel
 
+        //        PROFILE VM
+
+        @Binds
+        @IntoMap
+        @ViewModelKey(ProfileVM::class)
+        fun bindProfileVM(profileVM: ProfileVM): ViewModel
     }
 }

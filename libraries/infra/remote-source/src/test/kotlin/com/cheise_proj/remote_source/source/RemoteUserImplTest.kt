@@ -1,6 +1,9 @@
 package com.cheise_proj.remote_source.source
 
+import com.cheise_proj.data.model.Profile
 import com.cheise_proj.data.model.User
+import com.cheise_proj.remote_source.USERTYPE
+import com.cheise_proj.remote_source.extension.asModel
 import com.cheise_proj.remote_source.model.CredentialDto
 import com.cheise_proj.remote_source.service.ApiService
 import io.reactivex.rxjava3.core.Observable
@@ -52,5 +55,21 @@ class RemoteUserImplTest {
                         t.refreshToken == "any_refresh_token"
             }
 
+    }
+
+    @Test
+    fun `should fetch user profile with user type student`() {
+        val actual = FakeUser.getStudentDto()
+        Mockito.`when`(apiService.getStudentProfile()).thenReturn(Observable.just(actual))
+        val test = remoteUserImpl.fetchProfile(USERTYPE.STUDENT.name).test()
+        test.assertValue { t: Profile -> t == actual.asModel() }.assertComplete()
+    }
+
+    @Test
+    fun `should fetch user profile with user type staff`() {
+        val actual = FakeUser.getStaffDto()
+        Mockito.`when`(apiService.getStaffProfile()).thenReturn(Observable.just(actual))
+        val test = remoteUserImpl.fetchProfile(USERTYPE.STAFF.name).test()
+        test.assertValue { t: Profile -> t == actual.asModel() }.assertComplete()
     }
 }
