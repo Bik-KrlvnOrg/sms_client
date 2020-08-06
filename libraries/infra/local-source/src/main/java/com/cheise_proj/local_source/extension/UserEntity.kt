@@ -5,6 +5,6 @@ import com.cheise_proj.local_source.mapper.UserMapper
 import com.cheise_proj.local_source.model.UserEntity
 
 
-internal fun UserEntity.toModel() = UserMapper.fromObject(this)
+internal fun UserEntity.asModel() = UserMapper.fromObject(this)
 
-internal fun User.toObject() = UserMapper.toModel(this)
+internal fun User.asEntity() = UserMapper.toModel(this)

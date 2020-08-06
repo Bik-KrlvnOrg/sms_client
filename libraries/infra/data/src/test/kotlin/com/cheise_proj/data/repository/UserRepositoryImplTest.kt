@@ -1,6 +1,7 @@
 package com.cheise_proj.data.repository
 
-import com.cheise_proj.data.extension.asObject
+import com.cheise_proj.data.extension.asEntity
+import com.cheise_proj.data.extension.asModel
 import com.cheise_proj.data.source.local.LocalUser
 import com.cheise_proj.data.source.remote.RemoteUser
 import io.reactivex.rxjava3.core.Observable
@@ -54,7 +55,7 @@ class UserRepositoryImplTest {
         userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = USER_TYPE)
             .test()
             .assertValueCount(2)
-            .assertValues(user.asObject(), user.asObject())
+            .assertValues(user.asEntity(), user.asEntity())
             .assertComplete()
 
         Mockito.verify(localUser, times(1)).addUser(user)
@@ -73,11 +74,32 @@ class UserRepositoryImplTest {
         userRepositoryImpl.getUser(username = USER_NAME, password = USER_PASSWORD, type = USER_TYPE)
             .test()
             .assertValueCount(1)
-            .assertValue(user.asObject())
+            .assertValue(user.asEntity())
             .assertComplete()
 
         Mockito.verify(localUser, times(0)).addUser(user)
     }
 
+    @Test
+    fun `should get profile data with identifier`() {
+        val user = FakeUser.getUser()
+        val actual = FakeUser.getProfile()
+
+        Mockito.`when`(remoteUser.fetchProfile(anyString())).thenReturn(
+            Observable.just(actual)
+        )
+        Mockito.`when`(localUser.getUser(Mockito.anyInt()))
+            .thenReturn(Single.just(user))
+
+        userRepositoryImpl.getProfile(Mockito.anyInt())
+            .test()
+            .assertValueCount(1)
+            .assertValue { it.asModel() == actual }
+            .assertComplete()
+
+        Mockito.verify(localUser, times(1)).getUser(Mockito.anyInt())
+        Mockito.verify(remoteUser, times(1)).fetchProfile(anyString())
+        Mockito.verify(localUser, times(1)).addProfile(actual)
+    }
 
 }

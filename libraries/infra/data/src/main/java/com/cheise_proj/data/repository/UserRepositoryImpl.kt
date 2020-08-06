@@ -1,9 +1,11 @@
 package com.cheise_proj.data.repository
 
-import com.cheise_proj.data.extension.asObject
+import com.cheise_proj.data.extension.asEntity
+import com.cheise_proj.data.model.Profile
 import com.cheise_proj.data.model.User
 import com.cheise_proj.data.source.local.LocalUser
 import com.cheise_proj.data.source.remote.RemoteUser
+import com.cheise_proj.domain.entities.ProfileEntity
 import com.cheise_proj.domain.entities.UserEntity
 import com.cheise_proj.domain.repository.UserRepository
 import io.reactivex.rxjava3.core.Observable
@@ -16,10 +18,10 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     override fun getUser(username: String, password: String, type: String): Observable<UserEntity> {
-        val localUser = local.getUser(username = username, password = password,type = type)
+        val localUser = local.getUser(username = username, password = password, type = type)
             .map { t: User ->
                 println("local data: $t")
-                t.asObject()
+                t.asEntity()
             }
             .toObservable()
         return remote.fetchUserToken(
@@ -31,8 +33,20 @@ class UserRepositoryImpl @Inject constructor(
                 t.type = type
                 t.password = password
                 local.addUser(t)
-                t.asObject()
+                t.asEntity()
             }.onErrorResumeNext { Observable.empty() }
             .concatWith(localUser)
+    }
+
+    override fun getProfile(identifier: Int): Observable<ProfileEntity> {
+        return local.getUser(identifier).toObservable()
+            .flatMap { t: User ->
+                println("local data: $t")
+                remote.fetchProfile(t.type)
+            }
+            .map {t: Profile ->
+                local.addProfile(t)
+                t.asEntity()
+            }
     }
 }

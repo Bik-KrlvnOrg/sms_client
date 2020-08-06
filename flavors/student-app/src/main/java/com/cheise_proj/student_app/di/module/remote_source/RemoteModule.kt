@@ -18,10 +18,10 @@ import javax.inject.Singleton
 @Module(includes = [RemoteModule.Binders::class])
 internal class RemoteModule {
     companion object {
-        private const val WRITE_TIMEOUT: Long = 10
-        private const val READ_TIMEOUT: Long = 10
-        private const val CALL_TIMEOUT: Long = 10
-        private const val CONNECT_TIMEOUT: Long = 10
+        private const val WRITE_TIMEOUT: Long = 50
+        private const val READ_TIMEOUT: Long = 50
+        private const val CALL_TIMEOUT: Long = 50
+        private const val CONNECT_TIMEOUT: Long = 50
     }
 
     @Module

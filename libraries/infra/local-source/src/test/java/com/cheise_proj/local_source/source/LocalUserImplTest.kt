@@ -1,12 +1,11 @@
 package com.cheise_proj.local_source.source
 
 import com.cheise_proj.local_source.db.dao.UserDao
-import com.cheise_proj.local_source.extension.toModel
-import com.cheise_proj.local_source.extension.toObject
+import com.cheise_proj.local_source.extension.asEntity
+import com.cheise_proj.local_source.extension.asModel
 import com.cheise_proj.local_source.utils.FakeUser
 import io.reactivex.Single
 import org.junit.Before
-
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -39,7 +38,7 @@ class LocalUserImplTest {
     fun `should insert new user object`() {
         val actual = FakeUser.getUser()
         localUserImpl.addUser(actual)
-        Mockito.verify(userDao, times(1)).addUser(actual.toObject())
+        Mockito.verify(userDao, times(1)).addUser(actual.asEntity())
     }
 
     @Test
@@ -51,7 +50,27 @@ class LocalUserImplTest {
         localUserImpl.getUser(username = USERNAME, password = USER_PASSWORD, type = USER_TYPE)
             .test()
             .assertValueCount(1)
-            .assertValue { it == actual.toModel() }
+            .assertValue { it == actual.asModel() }
             .assertComplete()
+    }
+
+    @Test
+    fun `should get user with identifier`() {
+        val actual = FakeUser.getUserEntity()
+        Mockito.`when`(userDao.getUser(Mockito.anyInt()))
+            .thenReturn(Single.just(actual))
+
+        localUserImpl.getUser(Mockito.anyInt())
+            .test()
+            .assertValueCount(1)
+            .assertValue { it == actual.asModel() }
+            .assertComplete()
+    }
+
+    @Test
+    fun `should insert new profile object`() {
+        val actual = FakeUser.getProfile()
+        localUserImpl.addProfile(actual.asModel())
+        Mockito.verify(userDao, times(1)).addProfile(actual)
     }
 }
