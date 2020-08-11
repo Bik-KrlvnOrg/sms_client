@@ -39,14 +39,21 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun getProfile(identifier: Int): Observable<ProfileEntity> {
+        val localProfile = local.getProfile(identifier).toObservable().map { it.asEntity() }
         return local.getUser(identifier).toObservable()
             .flatMap { t: User ->
                 println("local data: $t")
+
                 remote.fetchProfile(t.type)
+                    .map { profile: Profile ->
+                        profile.userId = identifier
+                        local.addProfile(profile)
+                        profile.asEntity()
+                    }
+                    .onErrorResumeNext { Observable.empty() }
+                    .concatWith(localProfile)
             }
-            .map {t: Profile ->
-                local.addProfile(t)
-                t.asEntity()
-            }
+
+
     }
 }

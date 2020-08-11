@@ -5,5 +5,6 @@ import android.graphics.drawable.Drawable
 
 data class DashboardMenu(
     val title: String,
-    val image: Drawable
+    val image: Drawable,
+    val deepLink:String
 )

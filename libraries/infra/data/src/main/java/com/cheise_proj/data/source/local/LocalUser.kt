@@ -12,4 +12,6 @@ interface LocalUser {
     fun getUser(identifier: Int): Single<User>
 
     fun addProfile(profile: Profile)
+
+    fun getProfile(identifier: Int):Single<Profile>
 }

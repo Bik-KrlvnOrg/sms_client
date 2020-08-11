@@ -1,7 +1,6 @@
 package com.cheise_proj.data.repository
 
 import com.cheise_proj.data.extension.asEntity
-import com.cheise_proj.data.extension.asModel
 import com.cheise_proj.data.source.local.LocalUser
 import com.cheise_proj.data.source.remote.RemoteUser
 import io.reactivex.rxjava3.core.Observable
@@ -91,15 +90,42 @@ class UserRepositoryImplTest {
         Mockito.`when`(localUser.getUser(Mockito.anyInt()))
             .thenReturn(Single.just(user))
 
+        Mockito.`when`(localUser.getProfile(Mockito.anyInt()))
+            .thenReturn(Single.just(actual))
+
         userRepositoryImpl.getProfile(Mockito.anyInt())
             .test()
-            .assertValueCount(1)
-            .assertValue { it.asModel() == actual }
+            .assertValueAt(0, actual.asEntity())
+            .assertValueAt(1, actual.asEntity())
+            .assertValueCount(2)
             .assertComplete()
 
         Mockito.verify(localUser, times(1)).getUser(Mockito.anyInt())
         Mockito.verify(remoteUser, times(1)).fetchProfile(anyString())
         Mockito.verify(localUser, times(1)).addProfile(actual)
+    }
+
+    @Test
+    fun `should get profile data from cache on remote error with identifier`() {
+        val user = FakeUser.getUser()
+        val actual = FakeUser.getProfile()
+
+        Mockito.`when`(remoteUser.fetchProfile(anyString())).thenReturn(
+            Observable.error(Throwable(ERROR_MESSAGE))
+        )
+        Mockito.`when`(localUser.getUser(Mockito.anyInt()))
+            .thenReturn(Single.just(user))
+
+        Mockito.`when`(localUser.getProfile(Mockito.anyInt()))
+            .thenReturn(Single.just(actual))
+
+        userRepositoryImpl.getProfile(Mockito.anyInt())
+            .test()
+            .assertValueCount(1)
+            .assertComplete()
+
+        Mockito.verify(localUser, times(1)).getUser(Mockito.anyInt())
+        Mockito.verify(remoteUser, times(1)).fetchProfile(anyString())
     }
 
 }

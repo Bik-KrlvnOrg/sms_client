@@ -20,6 +20,7 @@ def Gson = '2.8.6'
 def Robolelectric = '4.3'
 def Preference = '1.1.1'
 def AppCompact = '1.1.0'
+def LeakCanary = '2.2'
 
 ext.coreDeps = [
         kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
@@ -62,7 +63,9 @@ ext.deps = [
         dagger             : "com.google.dagger:dagger:${Dagger}",
         dagger_android     : "com.google.dagger:dagger-android:${Dagger}",
         dagger_support     : "com.google.dagger:dagger-android-support:${Dagger}",
-        preference         : "androidx.preference:preference-ktx:${Preference}"
+        preference         : "androidx.preference:preference-ktx:${Preference}",
+
+        leak_canary        : "com.jakewharton.timber:timber:${LeakCanary}"
 ]
 
 ext.kaptDeps = [

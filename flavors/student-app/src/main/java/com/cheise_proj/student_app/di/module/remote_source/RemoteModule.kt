@@ -33,13 +33,14 @@ internal class RemoteModule {
 
     //    OK HTTP CLIENT
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(tokenService: TokenService): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .callTimeout(CALL_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(Logger.remoteLogging())
+            .addInterceptor(tokenService)
             .build()
     }
 

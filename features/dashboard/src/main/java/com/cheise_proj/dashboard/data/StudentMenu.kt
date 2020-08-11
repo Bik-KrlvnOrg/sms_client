@@ -8,37 +8,48 @@ object StudentMenu : UserMenu() {
     override fun getMenu(context: Context): List<DashboardMenu> {
         return arrayListOf(
             DashboardMenu(
-                "Profile",
-                context.resources.getDrawable(R.drawable.ic_profile, context.theme)
+                title = "Profile",
+                image = context.resources.getDrawable(R.drawable.ic_profile, context.theme),
+                deepLink = "profile"
             ),
             DashboardMenu(
-                "Fees",
-                context.resources.getDrawable(R.drawable.ic_fee, context.theme)
+                title = "Fees",
+                image = context.resources.getDrawable(R.drawable.ic_fee, context.theme),
+                deepLink = ""
+
             ),
             DashboardMenu(
-                "Homework",
-                context.resources.getDrawable(R.drawable.ic_homework, context.theme)
+                title = "Homework",
+                image = context.resources.getDrawable(R.drawable.ic_homework, context.theme),
+                deepLink = ""
             ),
             DashboardMenu(
-                "Attendance",
-                context.resources.getDrawable(R.drawable.ic_attendance, context.theme)
+                title = "Attendance",
+                image = context.resources.getDrawable(R.drawable.ic_attendance, context.theme),
+                deepLink = ""
             ),
             DashboardMenu(
-                "NoticeBoard",
-                context.resources.getDrawable(R.drawable.ic_noticeboard, context.theme)
+                title = "NoticeBoard",
+                image = context.resources.getDrawable(R.drawable.ic_noticeboard, context.theme),
+                deepLink = ""
             ),
             DashboardMenu(
-                "Teacher",
-                context.resources.getDrawable(R.drawable.ic_presentation, context.theme)
+                title = "Teacher",
+                image = context.resources.getDrawable(R.drawable.ic_presentation, context.theme),
+                deepLink = ""
             ), DashboardMenu(
-                "Examination",
-                context.resources.getDrawable(R.drawable.ic_test, context.theme)
+                title = "Examination",
+                image = context.resources.getDrawable(R.drawable.ic_test, context.theme),
+                deepLink = ""
             ), DashboardMenu(
-                "Library",
-                context.resources.getDrawable(R.drawable.ic_library, context.theme)
+                title = "Library",
+                image = context.resources.getDrawable(R.drawable.ic_library, context.theme),
+                deepLink = ""
             ), DashboardMenu(
-                "Transport",
-                context.resources.getDrawable(R.drawable.ic_bus, context.theme)
+                title = "Transport",
+                image = context.resources.getDrawable(R.drawable.ic_bus, context.theme),
+                deepLink = ""
+
             )
         )
     }
