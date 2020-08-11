@@ -12,6 +12,7 @@ data class Profile(
     val address: String,
     val className: String
 ) {
+    var userId:Int = -1
     var father: String? = null
     var mother: String? = null
     var contact: String? = null

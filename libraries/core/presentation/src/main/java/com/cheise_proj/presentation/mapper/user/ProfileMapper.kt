@@ -24,6 +24,7 @@ internal object ProfileMapper : Mapper<Profile, ProfileEntity> {
             education = entity.education
             subject = entity.subject
             contact = entity.contact
+            userId = entity.userId
         }
     }
 
@@ -46,6 +47,7 @@ internal object ProfileMapper : Mapper<Profile, ProfileEntity> {
             education = model.education
             subject = model.subject
             contact = model.contact
+            userId = model.userId
         }
     }
 }

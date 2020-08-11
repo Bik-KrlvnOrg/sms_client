@@ -35,6 +35,12 @@ class LocalUserImpl @Inject constructor(private val userDao: UserDao) : LocalUse
 
     override fun addProfile(profile: Profile) {
         Timber.i("addProfile: $profile")
-       userDao.addProfile(profile.asEntity())
+        userDao.addProfile(profile.asEntity())
+    }
+
+    override fun getProfile(identifier: Int): Single<Profile> {
+        val profile = RxJavaBridge.toV3Single(userDao.getProfile(identifier)).map { it.asModel() }
+        Timber.i("getProfile: $profile")
+        return profile
     }
 }

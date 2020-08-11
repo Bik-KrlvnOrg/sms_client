@@ -51,9 +51,9 @@ class DashboardFragment : BaseFragment<DashboardVM>() {
     }
 
     private fun initRecyclerView() {
-        adapter = DashboardAdapter() {
+        adapter = DashboardAdapter {
             Timber.i("menuClick: $it")
-            findNavController().navigate(navigation.deepLink(it?.title))
+            findNavController().navigate(navigation.deepLink(it?.deepLink))
         }
         recycler_view.apply {
             hasFixedSize()

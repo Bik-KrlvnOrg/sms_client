@@ -37,4 +37,7 @@ interface UserDao {
         removeProfile()
         newProfile(profile)
     }
+
+    @Query("SELECT * FROM profile WHERE userId = :identifier")
+    fun getProfile(identifier: Int):Single<ProfileEntity>
 }

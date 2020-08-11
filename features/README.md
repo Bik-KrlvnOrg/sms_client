@@ -2,3 +2,4 @@
 
 * auth
 * dashboard
+* profile

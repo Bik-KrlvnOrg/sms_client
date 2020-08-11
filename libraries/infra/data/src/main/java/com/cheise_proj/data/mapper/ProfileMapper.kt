@@ -23,6 +23,7 @@ internal object ProfileMapper : Mapper<Profile, ProfileEntity> {
             email = obj.email
             department = obj.department
             education = obj.education
+            userId = obj.userId
         }
     }
 
@@ -45,6 +46,7 @@ internal object ProfileMapper : Mapper<Profile, ProfileEntity> {
             email = model.email
             department = model.department
             education = model.education
+            userId = model.userId
         }
     }
 }

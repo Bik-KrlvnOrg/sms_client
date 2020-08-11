@@ -21,6 +21,7 @@ class LocalUserImplTest {
         private const val USERNAME = "any_username"
         private const val USER_PASSWORD = "any_password"
         private const val USER_TYPE = "any_type"
+        private const val USER_ID = 1
     }
 
     private lateinit var localUserImpl: LocalUserImpl
@@ -72,5 +73,13 @@ class LocalUserImplTest {
         val actual = FakeUser.getProfile()
         localUserImpl.addProfile(actual.asModel())
         Mockito.verify(userDao, times(1)).addProfile(actual)
+    }
+
+    @Test
+    fun `should get profile with identifier`() {
+        val actual = FakeUser.getProfile()
+        Mockito.`when`(userDao.getProfile(Mockito.anyInt())).thenReturn(Single.just(actual))
+        val test = localUserImpl.getProfile(USER_ID).test()
+        test.assertValue { it.asEntity() == actual }.assertComplete()
     }
 }

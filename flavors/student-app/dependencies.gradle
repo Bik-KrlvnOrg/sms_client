@@ -16,6 +16,7 @@ ext {
             rxJava            : deps.rxJava,
             rxKotlin          : deps.rxKotlin,
             rxAndroid         : deps.rxJavaAndroid,
+            rxBridge          : deps.rxBridge,
 
             retrofit          : deps.retrofit,
             retrofit_adapter  : deps.rxJava_adapter,

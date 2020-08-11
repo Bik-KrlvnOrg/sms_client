@@ -11,12 +11,14 @@ import com.cheise_proj.student_app.di.module.local_source.LocalModule
 import com.cheise_proj.student_app.di.module.navigation.AppNavigationModule
 import com.cheise_proj.student_app.di.module.presentation.PresentationModule
 import com.cheise_proj.student_app.di.module.remote_source.RemoteModule
+import com.cheise_proj.student_app.di.module.rxjava.RxModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module(
     includes = [
+        RxModule::class,
         DomainModule::class,
         DataModule::class,
         PresentationModule::class,
