@@ -16,7 +16,8 @@ ext {
     di = [
             dagger        : deps.dagger,
             dagger_android: deps.dagger_android,
-            dagger_support: deps.dagger_support
+            dagger_support: deps.dagger_support,
+            gson          : deps.gson,
     ]
 
 
